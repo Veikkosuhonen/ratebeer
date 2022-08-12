@@ -1,0 +1,51 @@
+Running via Spring preloader in process 18436
+Loading development environment (Rails 7.0.3.1)
+[1] pry(main)> Brewery.create name: 'BrewDog', year: 2007
+   (0.9ms)  SELECT sqlite_version(*)
+  TRANSACTION (0.0ms)  begin transaction
+  Brewery Create (0.2ms)  INSERT INTO "breweries" ("name", "year", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["name", "BrewDog"], ["year", 2007], ["created_at", "2022-08-12 19:29:28.011808"], ["updated_at", "2022-08-12 19:29:28.011808"]]
+  TRANSACTION (1.9ms)  commit transaction
+=> #<Brewery:0x00007f91cb5b68a0 id: 5, name: "BrewDog", year: 2007, created_at: Fri, 12 Aug 2022 19:29:28.011808000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:29:28.011808000 UTC +00:00>
+[2] pry(main)> b = _
+=> #<Brewery:0x00007f91cb5b68a0 id: 5, name: "BrewDog", year: 2007, created_at: Fri, 12 Aug 2022 19:29:28.011808000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:29:28.011808000 UTC +00:00>
+[3] pry(main)> b.beers.create name: 'Punk IPA', style: 'IPA'
+  TRANSACTION (0.0ms)  begin transaction
+  Beer Create (0.2ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Punk IPA"], ["style", "IPA"], ["brewery_id", 5], ["created_at", "2022-08-12 19:30:09.732977"], ["updated_at", "2022-08-12 19:30:09.732977"]]
+  TRANSACTION (1.9ms)  commit transaction
+=> #<Beer:0x00007f91ca25cef8 id: 11, name: "Punk IPA", style: "IPA", brewery_id: 5, created_at: Fri, 12 Aug 2022 19:30:09.732977000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:30:09.732977000 UTC +00:00>
+[4] pry(main)> b.beers.create name: 'Nanny State', style: 'lowalcohol'
+  TRANSACTION (0.1ms)  begin transaction
+  Beer Create (0.3ms)  INSERT INTO "beers" ("name", "style", "brewery_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["name", "Nanny State"], ["style", "lowalcohol"], ["brewery_id", 5], ["created_at", "2022-08-12 19:30:44.233400"], ["updated_at", "2022-08-12 19:30:44.233400"]]
+  TRANSACTION (7.1ms)  commit transaction
+=> #<Beer:0x00007f91c818b350 id: 12, name: "Nanny State", style: "lowalcohol", brewery_id: 5, created_at: Fri, 12 Aug 2022 19:30:44.233400000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:30:44.233400000 UTC +00:00>
+[5] pry(main)> _.ratings.create score: 28
+  TRANSACTION (0.1ms)  begin transaction
+  Rating Create (0.2ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 28], ["beer_id", 12], ["created_at", "2022-08-12 19:31:10.787023"], ["updated_at", "2022-08-12 19:31:10.787023"]]
+  TRANSACTION (2.0ms)  commit transaction
+=> #<Rating:0x00007f91c815c3c0 id: 2, score: 28, beer_id: 12, created_at: Fri, 12 Aug 2022 19:31:10.787023000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:31:10.787023000 UTC +00:00>
+[6] pry(main)> punkIpa = Brewery.findBy name: 'Punk IPA'
+NoMethodError: undefined method `findBy' for Brewery:Class
+Did you mean?  find_by
+               find_by!
+               find
+from /home/vesuvesu/.rbenv/versions/3.1.2/lib/ruby/gems/3.1.0/gems/activerecord-7.0.3.1/lib/active_record/dynamic_matchers.rb:22:in `method_missing'
+[7] pry(main)> punkIpa = Brewery.find_by name: 'Punk IPA'
+  Brewery Load (0.2ms)  SELECT "breweries".* FROM "breweries" WHERE "breweries"."name" = ? LIMIT ?  [["name", "Punk IPA"], ["LIMIT", 1]]
+=> nil
+[8] pry(main)> punkIpa.ratings.create score: 41
+NoMethodError: undefined method `ratings' for nil:NilClass
+from (pry):8:in `__pry__'
+[9] pry(main)> punkIpa = Beer.find_by name: 'Punk IPA'
+  Beer Load (0.3ms)  SELECT "beers".* FROM "beers" WHERE "beers"."name" = ? LIMIT ?  [["name", "Punk IPA"], ["LIMIT", 1]]
+=> #<Beer:0x00007f91c8091120 id: 11, name: "Punk IPA", style: "IPA", brewery_id: 5, created_at: Fri, 12 Aug 2022 19:30:09.732977000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:30:09.732977000 UTC +00:00>
+[10] pry(main)> punkIpa.ratings.create score: 41
+  TRANSACTION (0.1ms)  begin transaction
+  Rating Create (0.3ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 41], ["beer_id", 11], ["created_at", "2022-08-12 19:32:43.279528"], ["updated_at", "2022-08-12 19:32:43.279528"]]
+  TRANSACTION (12.3ms)  commit transaction
+=> #<Rating:0x00007f91c8056890 id: 3, score: 41, beer_id: 11, created_at: Fri, 12 Aug 2022 19:32:43.279528000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:32:43.279528000 UTC +00:00>
+[11] pry(main)> punkIpa.ratings.create score: 15
+  TRANSACTION (0.2ms)  begin transaction
+  Rating Create (0.7ms)  INSERT INTO "ratings" ("score", "beer_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["score", 15], ["beer_id", 11], ["created_at", "2022-08-12 19:32:49.732853"], ["updated_at", "2022-08-12 19:32:49.732853"]]
+  TRANSACTION (3.2ms)  commit transaction
+=> #<Rating:0x00007f91c801d518 id: 4, score: 15, beer_id: 11, created_at: Fri, 12 Aug 2022 19:32:49.732853000 UTC +00:00, updated_at: Fri, 12 Aug 2022 19:32:49.732853000 UTC +00:00>
+[12] pry(main)> 
