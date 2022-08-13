@@ -14,7 +14,7 @@ class RatingsController < ApplicationController
   end
 
   def destroy
-    #Rating.destroy(params[:id])
+    Rating.destroy(params[:id])
     redirect_to ratings_path
   end
 end
