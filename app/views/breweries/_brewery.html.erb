@@ -19,4 +19,11 @@
     <% end %>
   </p>
 
+  <% unless brewery.ratings.empty? %>
+  <p>
+    Brewery has <%=  pluralize(brewery.ratings.count, 'rating')  %> with an average
+    of <%= brewery.average_rating.to_f %>
+  </p>
+  <% end %>
+
 </div>
