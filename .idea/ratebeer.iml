@@ -43,9 +43,6 @@
     <orderEntry type="library" scope="PROVIDED" name="builder (v3.2.4, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="bundler (v2.3.19, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="coderay (v1.1.3, rbenv: 3.1.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="coffee-rails (v5.0.0, rbenv: 3.1.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="coffee-script (v2.4.1, rbenv: 3.1.2) [gem]" level="application" />
-    <orderEntry type="library" scope="PROVIDED" name="coffee-script-source (v1.12.2, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="concurrent-ruby (v1.1.10, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="crass (v1.0.6, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="debug (v1.4.0, rbenv: 3.1.2) [gem]" level="application" />
@@ -55,6 +52,7 @@
     <orderEntry type="library" scope="PROVIDED" name="ffi (v1.15.5, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="globalid (v1.0.0, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="i18n (v1.12.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="importmap-rails (v1.1.5, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="io-console (v0.5.11, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="irb (v1.4.1, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="jbuilder (v2.11.5, rbenv: 3.1.2) [gem]" level="application" />
@@ -99,6 +97,7 @@
     <orderEntry type="library" scope="PROVIDED" name="thor (v1.2.1, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tilt (v2.0.11, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="timeout (v0.3.0, rbenv: 3.1.2) [gem]" level="application" />
+    <orderEntry type="library" scope="PROVIDED" name="turbo-rails (v1.1.1, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks (v5.2.1, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="turbolinks-source (v5.2.0, rbenv: 3.1.2) [gem]" level="application" />
     <orderEntry type="library" scope="PROVIDED" name="tzinfo (v2.0.5, rbenv: 3.1.2) [gem]" level="application" />
@@ -121,7 +120,6 @@
         <option value="application_record" />
         <option value="benchmark" />
         <option value="channel" />
-        <option value="coffee:assets" />
         <option value="controller" />
         <option value="generator" />
         <option value="helper" />
@@ -153,7 +151,6 @@
         <option value="application_record" />
         <option value="benchmark" />
         <option value="channel" />
-        <option value="coffee:assets" />
         <option value="controller" />
         <option value="generator" />
         <option value="helper" />
@@ -356,6 +353,11 @@
               <RakeTaskImpl description="" fullCommand="db:truncate_all" id="truncate_all" />
             </subtasks>
           </RakeTaskImpl>
+          <RakeTaskImpl id="importmap">
+            <subtasks>
+              <RakeTaskImpl description="Setup Importmap for the app" fullCommand="importmap:install" id="install" />
+            </subtasks>
+          </RakeTaskImpl>
           <RakeTaskImpl id="log">
             <subtasks>
               <RakeTaskImpl description="Truncates all/specified *.log files in log/ to zero bytes (specify which logs with LOGS=test,development)" fullCommand="log:clear" id="clear" />
@@ -426,6 +428,18 @@
               <RakeTaskImpl id="storage">
                 <subtasks>
                   <RakeTaskImpl description="" fullCommand="tmp:storage:clear" id="clear" />
+                </subtasks>
+              </RakeTaskImpl>
+            </subtasks>
+          </RakeTaskImpl>
+          <RakeTaskImpl id="turbo">
+            <subtasks>
+              <RakeTaskImpl description="Install Turbo into the app" fullCommand="turbo:install" id="install" />
+              <RakeTaskImpl id="install">
+                <subtasks>
+                  <RakeTaskImpl description="Install Turbo into the app with asset pipeline" fullCommand="turbo:install:importmap" id="importmap" />
+                  <RakeTaskImpl description="Install Turbo into the app with webpacker" fullCommand="turbo:install:node" id="node" />
+                  <RakeTaskImpl description="Switch on Redis and use it in development" fullCommand="turbo:install:redis" id="redis" />
                 </subtasks>
               </RakeTaskImpl>
             </subtasks>

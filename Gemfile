@@ -10,8 +10,10 @@ gem 'sass-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails'
-# See https://github.com/rails/execjs#readme for more supported runtimes
+
+gem 'importmap-rails'
+gem 'turbo-rails'
+
 # gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library

@@ -69,13 +69,6 @@ GEM
     bindex (0.8.1)
     builder (3.2.4)
     coderay (1.1.3)
-    coffee-rails (5.0.0)
-      coffee-script (>= 2.2.0)
-      railties (>= 5.2.0)
-    coffee-script (2.4.1)
-      coffee-script-source
-      execjs
-    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     debug (1.4.0)
@@ -89,6 +82,9 @@ GEM
       activesupport (>= 5.0)
     i18n (1.12.0)
       concurrent-ruby (~> 1.0)
+    importmap-rails (1.1.5)
+      actionpack (>= 6.0.0)
+      railties (>= 6.0.0)
     io-console (0.5.11)
     irb (1.4.1)
       reline (>= 0.3.0)
@@ -195,6 +191,10 @@ GEM
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.0)
+    turbo-rails (1.1.1)
+      actionpack (>= 6.0.0)
+      activejob (>= 6.0.0)
+      railties (>= 6.0.0)
     turbolinks (5.2.1)
       turbolinks-source (~> 5.2)
     turbolinks-source (5.2.0)
@@ -219,8 +219,8 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  coffee-rails
   debug
+  importmap-rails
   jbuilder
   jquery-rails
   pry-rails
@@ -229,6 +229,7 @@ DEPENDENCIES
   sdoc
   spring
   sqlite3
+  turbo-rails
   turbolinks
   uglifier
   unicorn
