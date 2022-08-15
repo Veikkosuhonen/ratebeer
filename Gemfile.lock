@@ -91,7 +91,6 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
-    kgio (2.11.4)
     loofah (2.18.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -126,6 +125,8 @@ GEM
       pry (>= 0.10.4)
     psych (4.0.4)
       stringio
+    puma (5.6.4)
+      nio4r (~> 2.0)
     racc (1.6.0)
     rack (2.2.4)
     rack-test (2.0.2)
@@ -156,7 +157,6 @@ GEM
       rake (>= 12.2)
       thor (~> 1.0)
       zeitwerk (~> 2.5)
-    raindrops (0.20.0)
     rake (13.0.6)
     rdoc (6.4.0)
       psych (>= 4.0.0)
@@ -199,9 +199,6 @@ GEM
       concurrent-ruby (~> 1.0)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unicorn (6.1.0)
-      kgio (~> 2.6)
-      raindrops (~> 0.7)
     web-console (4.2.0)
       actionview (>= 6.0.0)
       activemodel (>= 6.0.0)
@@ -221,6 +218,7 @@ DEPENDENCIES
   jbuilder
   pg
   pry-rails
+  puma
   rails (>= 7.0.3)
   sass-rails
   sdoc
@@ -229,7 +227,6 @@ DEPENDENCIES
   turbo-rails
   turbolinks
   uglifier
-  unicorn
   web-console
 
 RUBY VERSION
