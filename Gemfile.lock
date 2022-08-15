@@ -218,7 +218,7 @@ DEPENDENCIES
   jbuilder
   pg
   pry-rails
-  puma
+  puma (~> 5.0)
   rails (>= 7.0.3)
   sass-rails
   sdoc
