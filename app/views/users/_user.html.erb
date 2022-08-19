@@ -9,6 +9,16 @@
     average: <%= user.average_rating.to_f %>
   </p>
 
+  Clubs:
+  <ul>
+    <% user.memberships.each do |membership| %>
+      <li>
+        <%= link_to membership.beer_club %>
+        <%= "since #{membership.created_at}" %>
+      </li>
+    <% end %>
+  </ul>
+
   Ratings:
   <ul>
     <% user.ratings.each do |rating| %>
