@@ -25,7 +25,7 @@
       <li>
         <%= render rating %>
         <% if user == current_user %>
-          <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+          <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } }, class: "btn-dangerous" %>
         <% end %>
       </li>
     <% end %>

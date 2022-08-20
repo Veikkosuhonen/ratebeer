@@ -1,7 +1,15 @@
 <h1>Sign in</h1>
 <p id="notice"><%= notice %></p>
 <%= form_with url: session_path, method: :post do |form| %>
-  <div>username <%= form.text_field :username %></div>
-  <div>password <%= form.password_field :password %></div>
-  <%= form.submit "Log in" %>
+  <section>
+    <%= form.label :username %>
+    <%= form.text_field :username %>
+  </section>
+  <section>
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+  </section>
+  <section>
+    <%= form.submit "Log in", class: "btn-main" %>
+  </section>
 <% end %>

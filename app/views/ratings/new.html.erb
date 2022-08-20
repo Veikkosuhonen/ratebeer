@@ -2,7 +2,7 @@
 
 <%= form_for(@rating) do |form| %>
   <% if @rating.errors.any? %>
-    <div id="error_explanation">
+    <section id="error_explanation">
       <h2><%= pluralize(@rating.errors.count, "error") %> prohibited rating from being saved:</h2>
 
       <ul>
@@ -10,10 +10,21 @@
           <li><%= msg %></li>
         <% end %>
       </ul>
-    </div>
+    </section>
   <% end %>
 
-  <%= form.collection_select :beer_id, @beers, :id, :to_s  %>
-  score: <%= form.number_field :score %>
-  <%= form.submit %>
+  <section>
+    <%= form.label :beer_id, "Beer" %>
+    <%= form.collection_select :beer_id, @beers, :id, :to_s  %>
+  </section>
+
+  <section>
+    <%= form.label :score %>
+    <%= form.number_field :score %>
+  </section>
+
+  <section>
+    <%= form.submit class: "btn-main" %>
+  </section>
+
 <% end %>

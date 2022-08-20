@@ -1,6 +1,6 @@
 <%= form_with(model: brewery) do |form| %>
   <% if brewery.errors.any? %>
-    <div style="color: red">
+    <section style="color: red">
       <h2><%= pluralize(brewery.errors.count, "error") %> prohibited this brewery from being saved:</h2>
 
       <ul>
@@ -8,20 +8,20 @@
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-    </div>
+    </section>
   <% end %>
 
-  <div>
+  <section>
     <%= form.label :name, style: "display: block" %>
     <%= form.text_field :name %>
-  </div>
+  </section>
 
-  <div>
+  <section>
     <%= form.label :year, style: "display: block" %>
     <%= form.number_field :year %>
-  </div>
+  </section>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <section>
+    <%= form.submit class: "btn-main" %>
+  </section>
 <% end %>

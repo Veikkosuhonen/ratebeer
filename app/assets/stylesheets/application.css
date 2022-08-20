@@ -14,7 +14,71 @@
  *= require_self
  */
 
+body {
+    background: #3d3835;
+    color: #fae0ca;
+}
+
+main {
+    margin: 2rem 1rem 1rem 1rem;
+}
+
+a {
+    color: #3ebb83;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+input, select {
+    background: none;
+    border: none;
+    border-bottom: #316b4b 1px solid;
+    background: #34322e;
+    padding: 0.3rem;
+    margin-top: 0.4rem;
+    margin-bottom: 0.5rem;
+    color: inherit;
+}
+
+section {
+    margin-top: 1rem;
+}
+
+label {
+    display: block;
+}
+
 .navbar {
-    padding: 10px;
-    background: #EFEFEF;
+    padding: 1rem;
+    background: #463f38;
+}
+
+.nav-link {
+    margin: 0 0.6rem 0 0.6rem;
+}
+
+.btn-main {
+    background: #a9a039;
+    color: #2E2F30;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+}
+
+.btn-main:hover {
+    background: #c4bd39;
+}
+
+.btn-dangerous {
+    background: none;
+    border: none;
+    color: #9b3d3d;
+    cursor: pointer;
+}
+
+.btn-dangerous:hover {
+    color: #d94e4e;
 }

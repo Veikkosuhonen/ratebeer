@@ -1,6 +1,6 @@
 <%= form_with(model: membership) do |form| %>
   <% if membership.errors.any? %>
-    <div style="color: red">
+    <section style="color: red">
       <h2><%= pluralize(membership.errors.count, "error") %> prohibited this membership from being saved:</h2>
 
       <ul>
@@ -8,15 +8,15 @@
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-    </div>
+    </section>
   <% end %>
 
-  <div>
-    <%= form.label :beerclub_id, style: "display: block" %>
+  <section>
+    <%= form.label :beerclub_id %>
     <%= form.collection_select :beerclub_id, @beer_clubs, :id, :to_s  %>
-  </div>
+  </section>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <section>
+    <%= form.submit class: "btn-main" %>
+  </section>
 <% end %>

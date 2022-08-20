@@ -1,32 +1,31 @@
 <%= form_with(model: beer) do |form| %>
   <% if beer.errors.any? %>
-    <div style="color: red">
+    <section style="color: red">
       <h2><%= pluralize(beer.errors.count, "error") %> prohibited this beer from being saved:</h2>
-
       <ul>
         <% beer.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
-    </div>
+    </section>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
+  <section>
+    <%= form.label :name %>
     <%= form.text_field :name %>
-  </div>
+  </section>
 
-  <div>
-    <%= form.label :style, style: "display: block" %>
+  <section>
+    <%= form.label :style %>
     <%= form.select :style, @styles %>
-  </div>
+  </section>
 
-  <div>
-    <%= form.label :brewery_id, style: "display: block" %>
+  <section>
+    <%= form.label :brewery_id %>
     <%= form.collection_select :brewery_id, @breweries, :id, :to_s %>
-  </div>
+  </section>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <section>
+    <%= form.submit class: "btn-main" %>
+  </section>
 <% end %>
