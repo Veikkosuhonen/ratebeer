@@ -24,7 +24,9 @@
     <% user.ratings.each do |rating| %>
       <li>
         <%= render rating %>
-        <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+        <% if user == current_user %>
+          <%= button_to 'delete', rating, method: :delete, form: { data: { turbo_confirm: 'Are you sure?' } } %>
+        <% end %>
       </li>
     <% end %>
   </ul>
