@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     if @user != current_user
       render :show
     end
+    render :edit
   end
 
   # POST /users or /users.json
@@ -43,7 +44,7 @@ class UsersController < ApplicationController
       if @user != current_user
         format.html { render :show, status: :unauthorized }
         format.json { head :unauthorized }
-      elsif user_params[:username].nil? and @user.update(user_params)
+      elsif user_params[:username].nil? && @user.update(user_params)
         format.html { redirect_to user_url(@user), notice: "User was successfully updated." }
         format.json { render :show, status: :ok, location: @user }
       else

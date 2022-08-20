@@ -4,5 +4,4 @@ class Membership < ApplicationRecord
 
   # validates :user_id, numericality: { less_than: 0 }
   validates :user_id, uniqueness: { scope: :beerclub_id }
-
 end
