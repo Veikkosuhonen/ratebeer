@@ -17,4 +17,18 @@ class User < ApplicationRecord
   def to_s
     username
   end
+
+  def favourite_beer
+    ratings.order(score: :desc).limit(1).first&.beer
+  end
+
+  def favourite_style
+    style = ratings
+      .joins(:beer)
+      .group(:style)
+      .order(score: :desc)
+      .average("ratings.score")
+      .first # returns [style, avg_score]
+    style&.first # style name
+  end
 end

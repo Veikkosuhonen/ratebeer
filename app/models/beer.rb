@@ -6,6 +6,7 @@ class Beer < ApplicationRecord
 
   validates :brewery_id, presence: true
   validates :name, presence: true
+  validates :style, presence: true
 
   def to_s
     "#{name}, #{brewery.name}"

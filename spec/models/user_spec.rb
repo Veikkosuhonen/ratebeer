@@ -33,11 +33,10 @@ RSpec.describe User, type: :model do
     end
   end
 
-
   describe "with a proper password" do
-    let(:user){ User.create username:"Pekka", password:"Secret1", password_confirmation:"Secret1" }
-    let(:test_brewery) { Brewery.new name: "test", year: 2000 }
-    let(:test_beer) { Beer.create name: "testbeer", style: "teststyle", brewery: test_brewery }
+    let(:user) { FactoryBot.create :user }
+    let(:test_brewery) { FactoryBot.create :brewery }
+    let(:test_beer) { FactoryBot.create :beer }
 
     it "is saved" do
       expect(user).to be_valid
@@ -45,8 +44,8 @@ RSpec.describe User, type: :model do
     end
 
     it "and with two ratings, has the correct average rating" do
-      rating = Rating.new score: 10, beer: test_beer
-      rating2 = Rating.new score: 20, beer: test_beer
+      rating = FactoryBot.create :rating, score: 10, user: user
+      rating2 = FactoryBot.create :rating, score: 20, user: user
 
       user.ratings << rating
       user.ratings << rating2
@@ -54,5 +53,87 @@ RSpec.describe User, type: :model do
       expect(user.ratings.count).to eq(2)
       expect(user.average_rating).to eq(15.0)
     end
+  end
+
+  describe "user's favourite beer" do
+    let(:user) { FactoryBot.create :user }
+
+    it "is determined by a method" do
+      expect(user).to respond_to(:favourite_beer)
+    end
+
+    it "doesn't exist if user has no ratings" do
+      expect(user.favourite_beer).to be_nil
+    end
+
+    it "is the only rated if only one rating" do
+      beer = FactoryBot.create :beer
+      FactoryBot.create :rating, score: 20, beer: beer, user: user
+      expect(user.favourite_beer).to eq(beer)
+    end
+
+    it "is the one with the highest rating if several rated" do
+      create_beers_with_many_ratings({user: user}, 10, 20, 15, 7, 9)
+      best = create_beer_with_rating params: { user: user }, score: 25
+      expect(user.favourite_beer).to eq(best)
+    end
+  end
+
+  describe "User's favourite style" do
+    let(:user) { FactoryBot.create :user }
+
+    it "is determined by a method" do
+      expect(user).to respond_to :favourite_style
+    end
+
+    it "doesn't exist if has no ratings" do
+      expect(user.favourite_style).to be_nil
+    end
+
+    it "is the style of the rated beer if only one rating" do
+      create_beer_with_rating params: { user: user }, style: "Ale", score: 50
+      expect(user.favourite_style).to eq("Ale")
+    end
+
+    it "is the style of the highest rated beer if rated beers all have different styles and one rating" do
+      create_beer_with_rating params: { user: user }, style: "Stout", score: 46
+      create_beer_with_rating params: { user: user }, style: "Porter", score: 48
+      create_beer_with_rating params: { user: user }, style: "Dortmunder", score: 47
+      expect(user.favourite_style).to eq("Porter")
+    end
+
+    it "is the style of the beer with the best average rating by user" do
+      create_beer_with_many_ratings user, "Ale", 25, 26 # Avg is over 26
+      create_beer_with_many_ratings user, "Lager", 50, 1 # Avg is under 26
+      expect(user.favourite_style).to eq("Ale")
+    end
+
+    it "is the style that has the best average rating by user, ignoring what beer is rated" do
+      create_beer_with_many_ratings user, "Ale", 26, 27# ok beer
+      create_beer_with_many_ratings user, "Ale", 25, 26 # another ok beer
+      create_beer_with_many_ratings user, "Lager", 49, 50 # absolutely favourite
+      create_beer_with_many_ratings user, "Lager", 2, 1 # absolutely most hated
+      expect(user.favourite_style).to eq("Ale") # Even though one lager is absolutely user's favourite, they still like ale more on average
+    end
+  end
+end
+
+def create_beer_with_rating(params:, style: "Lager", score:, beer: nil)
+  beer = FactoryBot.create :beer, style: style unless beer
+  FactoryBot.create :rating, score: score, beer: beer, user: params[:user]
+  beer
+end
+
+def create_beer_with_many_ratings(user, style, *scores)
+  beer = nil
+  scores.each do |score|
+    beer = create_beer_with_rating params: { user: user }, style: style, score: score, beer: beer
+  end
+  beer
+end
+
+def create_beers_with_many_ratings(object, *scores)
+  scores.each do |score|
+    create_beer_with_rating params: object, score: score
   end
 end

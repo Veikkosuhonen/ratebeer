@@ -9,6 +9,16 @@
     average: <%= user.average_rating.to_f %>
   </p>
 
+  <p>
+    <strong>Favourite style:</strong>
+    <%= user.favourite_style %>
+  </p>
+
+  <p>
+    <strong>Favourite beer:</strong>
+    <%= user.favourite_beer %>
+  </p>
+
   Clubs:
   <ul>
     <% user.memberships.each do |membership| %>
