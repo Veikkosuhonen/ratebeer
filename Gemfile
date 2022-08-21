@@ -35,6 +35,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'debug'
   gem 'sqlite3'
+  gem 'rspec-rails', '~>6.0.0.rc1'
 end
 
 group :production do
