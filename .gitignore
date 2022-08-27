@@ -19,3 +19,5 @@
 .secret
 
 /public/assets
+
+/config/master.key

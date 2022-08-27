@@ -85,6 +85,6 @@ RUN bundle exec rails assets:precompile
 
 ENV PORT 8080
 
-ARG SERVER_COMMAND="bundle exec puma"
+ARG SERVER_COMMAND="bundle exec puma -p $PORT"
 ENV SERVER_COMMAND ${SERVER_COMMAND}
 CMD ${SERVER_COMMAND}
