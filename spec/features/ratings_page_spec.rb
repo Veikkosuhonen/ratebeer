@@ -54,4 +54,17 @@ describe "Rating" do
     expect(beer1.ratings.count).to eq(1)
     expect(beer1.average_rating).to eq(15.0)
   end
+
+  it "can be deleted by user from user's page" do
+    create_beer_with_many_ratings user, "energiajuoma", 10, 40, 50
+    rating_to_delete = user.ratings.select { |r| r.score == 10 }.first
+
+    visit user_path(user)
+    expect {
+      click_button "delete-rating-#{rating_to_delete.id}"
+    }.to change {
+      Rating.count
+    }.by(-1)
+    expect(page).not_to have_content "anonymous 10 Pekka"
+  end
 end
