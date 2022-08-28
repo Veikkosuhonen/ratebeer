@@ -1,5 +1,7 @@
 require 'rails_helper'
 
+include Helpers
+
 RSpec.describe User, type: :model do
   it "has the username set correctly" do
     user = User.new username:"Pekka"
@@ -149,36 +151,5 @@ RSpec.describe User, type: :model do
       create_beers_with_many_ratings user, 10, 20, 30, brewery: brewery3 # avg 20
       expect(user.favourite_brewery).to eq(brewery2)
     end
-  end
-end
-
-def create_beer_with_brewery(name: "Brewistan", year: 2022)
-  brewery = FactoryBot.create :brewery, name: name, year: year
-  FactoryBot.create :beer, brewery: brewery
-end
-
-def create_beer_with_rating(user, style: "Lager", score:, beer: nil, brewery: nil)
-  if beer.nil?
-    if brewery.nil?
-      beer = FactoryBot.create :beer, style: style
-    else
-      beer = FactoryBot.create :beer, style: style, brewery: brewery
-    end
-  end
-
-  FactoryBot.create :rating, score: score, beer: beer, user: user
-  beer
-end
-
-def create_beer_with_many_ratings(user, style, *scores, beer: nil)
-  scores.each do |score|
-    beer = create_beer_with_rating user, style: style, score: score, beer: beer
-  end
-  beer
-end
-
-def create_beers_with_many_ratings(user, *scores, brewery: nil)
-  scores.each do |score|
-    create_beer_with_rating user, score: score, brewery: brewery
   end
 end
