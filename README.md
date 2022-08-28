@@ -1,3 +1,3 @@
-# ratebeer
+# ratebeer 🍻 [![tests](https://github.com/Veikkosuhonen/ratebeer/actions/workflows/rubyonrails.yml/badge.svg)](https://github.com/Veikkosuhonen/ratebeer/actions/workflows/rubyonrails.yml)
 
-[reitbiir.herokuapp.com](https://reitbiir.herokuapp.com/)
+Free 🍺 at [reitbiir.fly.dev](https://reitbiir.fly.dev/)
