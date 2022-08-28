@@ -2,7 +2,7 @@
 
 <p><%= @ratings.count %> ratings</p>
 
-<%= link_to "Create rating", new_rating_path %>
+<%= link_to "Create rating", new_rating_path if current_user %>
 
 <ul>
   <% @ratings.each do |rating| %>
