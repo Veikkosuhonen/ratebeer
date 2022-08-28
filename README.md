@@ -1,3 +1,3 @@
 # ratebeer
 
-[reitbiir.herokuapp.com](https://reitbiir.herokuapp.com/)
+[reitbiir.fly.dev](https://reitbiir.fly.dev/)
