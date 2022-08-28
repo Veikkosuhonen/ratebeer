@@ -105,8 +105,8 @@ RSpec.describe User, type: :model do
     end
 
     it "is the style of the beer with the best average rating by user" do
-      create_beer_with_many_ratings user, "Ale", 25, 26 # Avg is over 26
-      create_beer_with_many_ratings user, "Lager", 50, 1 # Avg is under 26
+      create_beer_with_many_ratings user, "Lager", 20, 50
+      create_beer_with_many_ratings user, "Ale", 40, 45
       expect(user.favourite_style).to eq("Ale")
     end
 

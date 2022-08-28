@@ -23,14 +23,12 @@ class User < ApplicationRecord
   end
 
   def favourite_style
-    style = ratings
+    result = ratings
       .joins(:beer)
       .group(:style)
-      .order(score: :desc)
-      .limit(1)
       .average("ratings.score")
-      .first # returns [style, avg_score]
-    style&.first # style name
+
+    result.max_by { |it| it.last }&.first
   end
 
   def favourite_brewery
