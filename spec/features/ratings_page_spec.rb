@@ -17,15 +17,28 @@ describe "Rating" do
     view_page_on_exception example
   end
 
-  it "page shows all ratings and their count" do
-    create_beer_with_rating user2, score: 10
-    create_beer_with_rating user2, score: 30
-    create_beer_with_rating user, score: 50
-    visit ratings_path
-    expect(page).to have_content "3 ratings"
-    expect(page).to have_content "anonymous 10 BeerDestroyer9000"
-    expect(page).to have_content "anonymous 30 BeerDestroyer9000"
-    expect(page).to have_content "anonymous 50 Pekka"
+  describe "are shown" do
+    before :each do
+      create_beer_with_rating user2, score: 10
+      create_beer_with_rating user2, score: 30
+      create_beer_with_rating user, score: 50
+      visit ratings_path
+    end
+
+    it "on all ratings page" do
+      expect(page).to have_content "3 ratings"
+      expect(page).to have_content "anonymous 10 BeerDestroyer9000"
+      expect(page).to have_content "anonymous 30 BeerDestroyer9000"
+      expect(page).to have_content "anonymous 50 Pekka"
+    end
+
+    it "on user's page with only user's ratings" do
+      visit user_path(user)
+      expect(page).to have_content "1 rating"
+      expect(page).to have_content "anonymous 50 Pekka"
+      expect(page).not_to have_content "10"
+      expect(page).not_to have_content "BeerDestroyer9000"
+    end
   end
 
   it "when given, is registered to the beer and user who is signed in" do
