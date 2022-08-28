@@ -31,18 +31,28 @@ jobs:
       - name: Run tests
         run: bundle exec rspec
 
+      - uses: actions/upload-artifact@v2
+        with:
+          name: test-coverage
+          path: /home/runner/work/ratebeer/ratebeer/coverage
+
   coverage:
-    name: Report coverage
+    name: Upload coverage report
     runs-on: ubuntu-22.04
     needs: test
     steps:
+      - uses: actions/download-artifact@v2
+        with:
+          name: test-coverage
       - name: Test & publish code coverage
         uses: paambaati/codeclimate-action@v3.0.0
         env:
           CC_TEST_REPORTER_ID: aae7c21e681e5c836a1b94bad375c72b1ab8e120f0c84ca6c5890d14c372200a
         with:
+          debug: true
           coverageLocations: |
             ${{github.workspace}}/coverage/*.json:simplecov
+          
 
   lint:
     runs-on: ubuntu-22.04
