@@ -7,21 +7,25 @@
   <%= csrf_meta_tags %>
     <%= javascript_importmap_tags %>
 </head>
-<body>
+<body style="margin: 0">
 
-<nav class="navbar">
-  <%=link_to "Breweries", breweries_path, class: "nav-link"  %>
-  <%=link_to "Beers", beers_path, class: "nav-link"  %>
-  <%=link_to "Ratings", ratings_path, class: "nav-link"  %>
-  <%=link_to "Places", places_path, class: "nav-link"  %>
-  <%=link_to "Beer clubs", beer_clubs_path, class: "nav-link"  %>
-  <%=link_to "Join a club", new_membership_path, class: "nav-link"  %>
+<div>
+  <img src="<%= session[:photo_id] %>" alt='beer'/>
+</div>
+
+<nav class="navbar surface">
+  <%=link_to "Breweries", breweries_path, class: "nav-link #{'selected-link' if request.path == breweries_path}"  %>
+  <%=link_to "Beers", beers_path, class: "nav-link #{'selected-link' if request.path == beers_path}"  %>
+  <%=link_to "Ratings", ratings_path, class: "nav-link #{'selected-link' if request.path == ratings_path}"  %>
+  <%=link_to "Places", places_path, class: "nav-link #{'selected-link' if request.path == places_path}"  %>
+  <%=link_to "Beer clubs", beer_clubs_path, class: "nav-link #{'selected-link' if request.path == beer_clubs_path}"  %>
   <% if current_user %>
+    <%=link_to "Join a club", new_membership_path, class: "nav-link #{'selected-link' if request.path == new_membership_path}"  %>
     <span class="nav-link"><%= current_user&.username  %> signed in</span>
     <%= link_to 'Sign out', '/signout', data: { "turbo-method": :delete }, class: "nav-link" %>
   <% else %>
-    <%= link_to 'Sign in', '/signin', class: "nav-link" %>
-    <%= link_to 'Register', new_user_path, class: "nav-link" %>
+    <%= link_to 'Sign in', '/signin', class: "nav-link #{'selected-link' if request.path == '/signin'}" %>
+    <%= link_to 'Register', new_user_path, class: "nav-link #{'selected-link' if request.path == new_user_path}" %>
   <%  end %>
 </nav>
 

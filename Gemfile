@@ -30,6 +30,8 @@ gem 'puma', '~> 5.0'
 
 gem 'httparty'
 
+gem 'unsplash'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
