@@ -51,6 +51,7 @@ group :test do
   gem 'factory_bot_rails'
   gem 'launchy'
   gem 'simplecov', require: false
+  gem "webmock", "~> 3.18"
 end
 
 group :production do
@@ -65,4 +66,5 @@ group :development do
   gem 'spring'
   gem 'pry-rails'
 end
+
 

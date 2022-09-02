@@ -1,5 +1,7 @@
 class UnsplashApi
   def self.random
+    return nil if Rails.env != "production"
+
     Unsplash.configure do |config|
       config.application_access_key = "4I7ILH3oTFHYc0yRSwOcYpjGpArzIonEmHBtzG71aKk"
       config.application_secret = "?"
