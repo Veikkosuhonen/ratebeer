@@ -37,5 +37,4 @@ class User < ApplicationRecord
       .average("ratings.score")
       .max_by(&:last)&.first
   end
-
 end

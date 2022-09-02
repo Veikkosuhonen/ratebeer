@@ -1,5 +1,4 @@
 class UnsplashApi
-
   def self.random
     Unsplash.configure do |config|
       config.application_access_key = "4I7ILH3oTFHYc0yRSwOcYpjGpArzIonEmHBtzG71aKk"
