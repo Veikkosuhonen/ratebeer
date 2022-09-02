@@ -28,6 +28,8 @@ gem 'bcrypt'
 
 gem 'puma', '~> 5.0'
 
+gem 'httparty'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

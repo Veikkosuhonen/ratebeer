@@ -27,16 +27,15 @@ class User < ApplicationRecord
   end
 
   def favourite_brewery
-    brewery_id = favourite_by :brewery_id
-    Brewery.find_by id: brewery_id
+    Brewery.find_by id: favourite_by(:brewery_id)
   end
 
-  def favourite_by(grouping_param)
-    result = ratings
-             .joins(:beer)
-             .group(grouping_param)
-             .average("ratings.score")
-
-    result.max_by(&:last)&.first
+  def favourite_by(criteria)
+    ratings
+      .joins(:beer)
+      .group(criteria)
+      .average("ratings.score")
+      .max_by(&:last)&.first
   end
+
 end
