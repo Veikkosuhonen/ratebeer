@@ -1,5 +1,9 @@
 class UnsplashApi
   def self.random
+    get_random_photo
+  end
+
+  def self.get_random_photo
     return nil if Rails.env != "production"
 
     Unsplash.configure do |config|
