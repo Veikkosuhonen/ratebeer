@@ -1,0 +1,14 @@
+<h1><%= @place.name %></h1>
+
+<p id="notice"><%= notice %></p>
+
+<section>
+  <% Place.rendered_fields.each do |field| %>
+    <div style="display: flex">
+      <span style="display: block; margin-right: 1rem"><%= field %>: </span>
+      <strong><%= @place.send(field) %></strong>
+    </div>
+  <% end %>
+</section>
+
+<%= link_to "Back to search", places_path %>
