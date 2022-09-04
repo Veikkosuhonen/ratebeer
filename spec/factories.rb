@@ -1,6 +1,14 @@
 FactoryBot.define do
+  sequence :username do |n|
+    "Pekka#{n}"
+  end
+
+  sequence :style_name do |n|
+    "Ipa#{n}"
+  end
+
   factory :user do
-    username { "Pekka" }
+    username { generate :username }
     password { "Foobar1" }
     password_confirmation { "Foobar1" }
   end
@@ -12,7 +20,7 @@ FactoryBot.define do
 
   factory :beer do
     name { "anonymous" }
-    style { "Lager" }
+    style
     brewery # olueeseen liittyvä panimo luodaan brewery-tehtaalla
   end
 
@@ -20,5 +28,10 @@ FactoryBot.define do
     score { 10 }
     beer # reittaukseen liittyvä olut luodaan beer-tehtaalla
     user # reittaukseen liittyvä user luodaan user-tehtaalla
+  end
+
+  factory :style do
+    name { generate :style_name }
+    description { "joo" }
   end
 end

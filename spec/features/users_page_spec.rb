@@ -20,7 +20,7 @@ describe "User" do
   end
 
   describe "who has signed up" do
-    let!(:user) { FactoryBot.create :user }
+    let!(:user) { FactoryBot.create :user, username: "Pekka" }
 
     it "can signin with right credentials" do
       sign_in username: "Pekka", password: "Foobar1"

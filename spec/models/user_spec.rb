@@ -94,20 +94,20 @@ RSpec.describe User, type: :model do
 
     it "is the style of the rated beer if only one rating" do
       create_beer_with_rating user, style: "Ale", score: 50
-      expect(user.favourite_style).to eq("Ale")
+      expect(user.favourite_style.name).to eq("Ale")
     end
 
     it "is the style of the highest rated beer if rated beers all have different styles and one rating" do
       create_beer_with_rating user, style: "Stout", score: 46
       create_beer_with_rating user, style: "Porter", score: 48
       create_beer_with_rating user, style: "Dortmunder", score: 47
-      expect(user.favourite_style).to eq("Porter")
+      expect(user.favourite_style.name).to eq("Porter")
     end
 
     it "is the style of the beer with the best average rating by user" do
       create_beer_with_many_ratings user, "Lager", 20, 50
       create_beer_with_many_ratings user, "Ale", 40, 45
-      expect(user.favourite_style).to eq("Ale")
+      expect(user.favourite_style.name).to eq("Ale")
     end
 
     it "is the style that has the best average rating by user, ignoring what beer is rated" do
@@ -115,7 +115,7 @@ RSpec.describe User, type: :model do
       create_beer_with_many_ratings user, "Ale", 25, 26 # another ok beer
       create_beer_with_many_ratings user, "Lager", 49, 50 # absolutely favourite
       create_beer_with_many_ratings user, "Lager", 2, 1 # absolutely most hated
-      expect(user.favourite_style).to eq("Ale") # Even though one lager is absolutely user's favourite, they still like ale more on average
+      expect(user.favourite_style.name).to eq("Ale") # Even though one lager is absolutely user's favourite, they still like ale more on average
     end
   end
 

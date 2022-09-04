@@ -16,8 +16,8 @@
   </section>
 
   <section>
-    <%= form.label :style %>
-    <%= form.select :style, @styles %>
+    <%= form.label :style_id %>
+    <%= form.collection_select :style_id, @styles, :id, :to_s %>
   </section>
 
   <section>

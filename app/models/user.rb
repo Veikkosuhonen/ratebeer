@@ -23,7 +23,7 @@ class User < ApplicationRecord
   end
 
   def favourite_style
-    favourite_by :style
+    Style.find_by id: favourite_by(:style_id)
   end
 
   def favourite_brewery

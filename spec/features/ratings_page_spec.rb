@@ -6,7 +6,7 @@ describe "Rating" do
   let!(:brewery) { FactoryBot.create :brewery, name:"Koff" }
   let!(:beer1) { FactoryBot.create :beer, name:"iso 3", brewery:brewery }
   let!(:beer2) { FactoryBot.create :beer, name:"Karhu", brewery:brewery }
-  let!(:user) { FactoryBot.create :user }
+  let!(:user) { FactoryBot.create :user, username: "Pekka" }
   let!(:user2) { FactoryBot.create :user, username: "BeerDestroyer9000" }
 
   before :each do
