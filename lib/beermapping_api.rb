@@ -1,16 +1,16 @@
 class BeermappingApi
   def self.places_in(city)
-    Rails.cache.fetch(city.downcase) { get_places_in city }
+    Rails.cache.fetch(city.downcase) { fetch_places_in city }
   end
 
-  def self.place_by_id(id)
-    Rails.cache.fetch(id, expires_in: 1.hour) { get_place_by_id id }
+  def self.place_by_id(place_id)
+    Rails.cache.fetch(place_id, expires_in: 1.hour) { fetch_place_by_id place_id }
   end
 
-  def self.get_place_by_id(id)
+  def self.fetch_place_by_id(place_id)
     url = "http://beermapping.com/webservice/locquery/#{key}"
 
-    response = HTTParty.get "#{url}/#{id}"
+    response = HTTParty.get "#{url}/#{place_id}"
     place = response.parsed_response["bmp_locations"]["location"]
 
     if place.nil? || place[:id] == "0"
@@ -20,7 +20,7 @@ class BeermappingApi
     Place.new place
   end
 
-  def self.get_places_in(city)
+  def self.fetch_places_in(city)
     url = "http://beermapping.com/webservice/loccity/#{key}/"
 
     response = HTTParty.get "#{url}#{ERB::Util.url_encode(city)}"
@@ -29,8 +29,8 @@ class BeermappingApi
     return [] if places.is_a?(Hash) && places['id'].nil?
 
     places = [places] if places.is_a?(Hash)
-    places.map do |placeData|
-      place = Place.new(placeData)
+    places.map do |place_data|
+      place = Place.new(place_data)
       Rails.cache.write place.id, place, { expires_in: 10.minutes }
       place
     end
