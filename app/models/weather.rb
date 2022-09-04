@@ -1,0 +1,3 @@
+class Weather < OpenStruct
+
+end

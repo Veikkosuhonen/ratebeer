@@ -1,0 +1,9 @@
+<% if @weather %>
+<div style="margin: 1rem 1rem 1rem 1rem">
+  <span>Temperature: </span>
+  <%= @weather&.temperature %>
+  <div>
+    <img src=<%= @weather&.weather_icons&.first %> alt="weather"/>
+  </div>
+</div>
+<% end %>

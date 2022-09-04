@@ -7,6 +7,8 @@
   <%= form.submit "Search", class: "btn-main" %>
 <% end %>
 
+<%= render :partial => "weather" %>
+
 <% if @places %>
   <table>
     <thead>
