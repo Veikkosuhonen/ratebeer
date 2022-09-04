@@ -15,7 +15,7 @@
 
   <section>
     <%= form.label :beer_id, "Beer" %>
-    <%= form.collection_select :beer_id, @beers, :id, :to_s  %>
+    <%= form.select :beer_id, options_from_collection_for_select(@beers, :id, :to_s, selected: @rating.beer_id) %>
   </section>
 
   <section>

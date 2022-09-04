@@ -3,5 +3,6 @@ class Membership < ApplicationRecord
   belongs_to :user
 
   # validates :user_id, numericality: { less_than: 0 }
-  validates :user_id, uniqueness: { scope: :beerclub_id }
+  validates :user_id, uniqueness: { scope: :beerclub_id }, presence: true
+  validates :beerclub_id, presence: true
 end
