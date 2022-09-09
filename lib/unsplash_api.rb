@@ -1,10 +1,12 @@
 class UnsplashApi
   def self.random
-    fetch_random_photo
+    Rails.cache.fetch("unsplash", expires_in: 1.minute) {
+      fetch_random_photo
+    }
   end
 
   def self.fetch_random_photo
-    return nil if Rails.env != "production"
+    return nil if Rails.env == "test"
 
     Unsplash.configure do |config|
       config.application_access_key = key
@@ -13,8 +15,8 @@ class UnsplashApi
       config.utm_source = "reitbiir"
     end
 
-    photo = Unsplash::Photo.random(count: 1).first
-    photo.urls[:regular]
+    photo = Unsplash::Photo.random(query: "beer", orientation: "landscape")
+    photo
   end
 
   def self.key

@@ -2,36 +2,88 @@
 <html>
 <head>
   <title>Ratebeer</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <%= csrf_meta_tags %>
-    <%= javascript_importmap_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
 </head>
 <body style="margin: 0">
 
-<div>
-  <img src="<%= session[:photo_id] %>" alt='beer'/>
+<div style="position: sticky; top: 0; left: 0; z-index: -10">
+  <img src="<%= @photo.urls[:regular] %>" alt='beer' style="width: 100%; height: 20rem"/>
+
+  <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; backdrop-filter: blur(0px) brightness(50%);">
+    <div>
+      <div style="display: flex; flex-direction: column; align-items: center; width: 100%">
+        <h1 class="display-1" style="color: #ffffff">Reitbiir</h1>
+        <h5 style="color: rgba(254,254,254,0.58)">Beer and Programmer satisfaction since 2022</h5>
+      </div>
+    </div>
+    <div style="display: flex; flex-direction: column; color: rgba(254,254,254,0.6)">
+      <div><%= @photo.description %> <%= (@photo.location.name) %></div>
+      <div>Photo by <%= @photo.user.name %>, <%= DateTime.parse(@photo.created_at).year %>, Unsplash</div>
+    </div>
+  </div>
 </div>
 
-<nav class="navbar surface">
-  <%=link_to "Breweries", breweries_path, class: "nav-link #{'selected-link' if request.path == breweries_path}"  %>
-  <%=link_to "Beers", beers_path, class: "nav-link #{'selected-link' if request.path == beers_path}"  %>
-  <%=link_to "Ratings", ratings_path, class: "nav-link #{'selected-link' if request.path == ratings_path}"  %>
-  <%=link_to "Places", places_path, class: "nav-link #{'selected-link' if request.path == places_path}"  %>
-  <%=link_to "Beer clubs", beer_clubs_path, class: "nav-link #{'selected-link' if request.path == beer_clubs_path}"  %>
-  <% if current_user %>
-    <%=link_to "Join a club", new_membership_path, class: "nav-link #{'selected-link' if request.path == new_membership_path}"  %>
-    <span class="nav-link"><%= link_to current_user %> signed in</span>
-    <%= link_to 'Sign out', '/signout', data: { "turbo-method": :delete }, class: "nav-link" %>
-  <% else %>
-    <%= link_to 'Sign in', '/signin', class: "nav-link #{'selected-link' if request.path == '/signin'}" %>
-    <%= link_to 'Register', new_user_path, class: "nav-link #{'selected-link' if request.path == new_user_path}" %>
-  <%  end %>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <%=link_to "Breweries", breweries_path, class: "nav-link"  %></li>
+        <li class="nav-item">
+          <%=link_to "Beers", beers_path, class: "nav-link #{'selected-link' if request.path == beers_path}"  %></li>
+        <li class="nav-item">
+          <%=link_to "Ratings", ratings_path, class: "nav-link #{'selected-link' if request.path == ratings_path}"  %></li>
+        <li class="nav-item">
+          <%=link_to "Places", places_path, class: "nav-link #{'selected-link' if request.path == places_path}"  %></li>
+        <li class="nav-item">
+          <%=link_to "Beer clubs", beer_clubs_path, class: "nav-link #{'selected-link' if request.path == beer_clubs_path}"  %></li>
+        <% if current_user %>
+          <li class="nav-item">
+            <%=link_to "Join a club", new_membership_path, class: "nav-link #{'selected-link' if request.path == new_membership_path}"  %></li>
+          <li class="nav-item">
+            <span class="nav-link"><%= link_to current_user %> signed in</span></li>
+          <li class="nav-item">
+            <%= link_to 'Sign out', '/signout', data: { "turbo-method": :delete }, class: "nav-link" %></li>
+        <% else %>
+          <li class="nav-item">
+            <%= link_to 'Sign in', '/signin', class: "nav-link #{'selected-link' if request.path == '/signin'}" %></li>
+          <li class="nav-item">
+            <%= link_to 'Register', new_user_path, class: "nav-link #{'selected-link' if request.path == new_user_path}" %></li>
+        <%  end %>
+      </ul>
+    </div>
+  </div>
 </nav>
 
-<main>
-<%= yield %>
-</main>
+<div style="background: #ffffff">
+  <% if notice %>
+    <div class="alert alert-primary" role="alert">
+      <%= notice %>
+    </div>
+  <% end %>
+  <div class="row">
+    <div class="col-sm-8">
+      <%= yield %>
+    </div>
+    <div class="col-sm-4">
+      <img
+        src="http://www.cs.helsinki.fi/u/mluukkai/wadror/pint.jpg"
+        width="200"
+        style="padding-top:30px"
+      >
+    </div>
+  </div>
+</div>
 
 </body>
 </html>

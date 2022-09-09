@@ -68,3 +68,9 @@ group :development do
 end
 
 
+
+gem "bootstrap", "~> 5.2"
+
+gem "jquery-rails", "~> 4.5"
+
+gem "mini_racer", "~> 0.6.3"

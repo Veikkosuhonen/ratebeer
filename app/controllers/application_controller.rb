@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
+  before_action :set_photo
   helper_method :current_user
+
+  def set_photo
+    @photo = UnsplashApi.random
+  end
 
   def current_user
     return nil if session[:user_id].nil?

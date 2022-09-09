@@ -4,7 +4,8 @@ class BeersController < ApplicationController
 
   # GET /beers or /beers.json
   def index
-    @beers = Beer.all
+    @beers = Beer.all.includes(:brewery).includes(:style)
+    puts @beers.first.style
   end
 
   # GET /beers/1 or /beers/1.json
