@@ -15,8 +15,7 @@ class UnsplashApi
       config.utm_source = "reitbiir"
     end
 
-    photo = Unsplash::Photo.random(query: "beer", orientation: "landscape")
-    photo
+    Unsplash::Photo.random(query: "beer", orientation: "landscape")
   end
 
   def self.key
