@@ -38,7 +38,7 @@ class User < ApplicationRecord
       .max_by(&:last)&.first
   end
 
-  def self.top(n)
-    User.all.includes(:ratings).sort_by { |u| -u.ratings.size }.take n
+  def self.top(count)
+    User.all.includes(:ratings).sort_by { |u| -u.ratings.size }.take count
   end
 end

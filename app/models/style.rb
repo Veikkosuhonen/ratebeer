@@ -9,13 +9,13 @@ class Style < ApplicationRecord
     name
   end
 
-  def self.top(n)
+  def self.top(count)
     top_ids = Style.joins(:ratings)
                    .group(:id)
                    .average("ratings.score")
                    .sort_by { |s| -s.second }
-                   .take(n)
-                   .map { |s| s.first }
+                   .take(count)
+                   .map(&:first)
     Style.where(id: top_ids).sort_by { |s| -s.average_rating }
   end
 end
