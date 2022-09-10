@@ -1,33 +1,6 @@
 <h1>Beers</h1>
 
-<table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Beer</th>
-      <th>Style</th>
-      <th>Brewery</th>
-      <th>Rating</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @beers.each do |beer| %>
-      <tr>
-        <th scope="row">
-          <%= link_to beer.name, beer %>
-        </th>
-        <td>
-          <%= link_to beer.style %>
-        </td>
-        <td>
-          <%= link_to beer.brewery %>
-        </td>
-        <td>
-          <%= beer.average_rating || '-' %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<%= render "beers_table", beers: @beers %>
 
 <%= link_to "New beer", new_beer_path, { class: "btn btn-primary" } if current_user %>
 <%= link_to "Breweries", breweries_path, { class: "link" } %>

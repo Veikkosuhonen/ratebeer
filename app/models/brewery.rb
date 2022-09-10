@@ -10,7 +10,14 @@ class Brewery < ApplicationRecord
     only_integer: true
   }
 
+  scope :active, -> { where is_active: true }
+  scope :retired, -> { where is_active: [nil,false] }
+
   def to_s
     name
+  end
+
+  def self.top(n)
+    self.all.sort_by {|b| -(b.average_rating || 0) }.take 3
   end
 end

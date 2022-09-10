@@ -22,6 +22,11 @@
   </section>
 
   <section class="mb-3">
+    <%= form.label :is_active, class: "form-label" %>
+    <%= form.check_box :is_active %>
+  </section>
+
+  <section class="mb-3">
     <%= form.submit class: "btn btn-primary" %>
   </section>
 <% end %>

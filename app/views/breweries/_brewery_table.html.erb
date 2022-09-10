@@ -1,0 +1,22 @@
+<div>
+  <table class="table mb-5">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Year</th>
+      <th>Beers</th>
+      <th>Average rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% breweries.each do |brewery| %>
+      <tr>
+        <td><%= link_to brewery.name, brewery %></td>
+        <td><%= brewery.year %></td>
+        <td><%= brewery.beers.size %></td>
+        <td><%= brewery.average_rating || '-' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+</table>
+</div>

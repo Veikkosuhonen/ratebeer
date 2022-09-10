@@ -1,18 +1,12 @@
-<h1>Breweries <%=@breweries.count %></h1>
+<h1>Breweries</h1>
 
-<div id="breweries">
-  <% @breweries.each do |brewery| %>
-    <p>
-      <%= link_to brewery.name, brewery %>
-    </p>
+<h2 class="mt-3">Active: <%= @active_breweries.size %></h2>
 
-    <p>
-      <strong>Year:</strong>
-      <%= brewery.year %>
-    </p>
-  <% end %>
-</div>
+<%= render "breweries/brewery_table", breweries: @active_breweries %>
 
-<%= link_to "New brewery", new_brewery_path if current_user %>
+<h2>Retired: <%= @retired_breweries.size %></h2>
+
+<%= render "breweries/brewery_table", breweries: @retired_breweries %>
+
+<%= link_to "New brewery", new_brewery_path, class: "btn btn-primary" if current_user %>
 <%= link_to "Beers", beers_path %>
-

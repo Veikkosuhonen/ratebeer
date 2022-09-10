@@ -1,6 +1,9 @@
 <div id="<%= dom_id brewery %>">
   <h2>
     <%= brewery.name %>
+    <% unless brewery.is_active %>
+      <span class="badge bg-secondary">retired</span>
+    <% end %>
   </h2>
 
   <i>
