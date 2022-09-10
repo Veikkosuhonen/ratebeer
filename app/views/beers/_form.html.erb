@@ -10,22 +10,22 @@
     </section>
   <% end %>
 
-  <section>
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <section class="mb-4 mt-5">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </section>
 
-  <section>
-    <%= form.label :style_id %>
-    <%= form.collection_select :style_id, @styles, :id, :to_s %>
+  <section class="mb-4">
+    <%= form.label :style_id, class: "form-label" %>
+    <%= form.select :style_id, @styles, {}, { :class => "form-select" }  %>
   </section>
 
-  <section>
-    <%= form.label :brewery_id %>
-    <%= form.collection_select :brewery_id, @breweries, :id, :to_s %>
+  <section class="mb-4">
+    <%= form.label :brewery_id, class: "form-label" %>
+    <%= form.select :brewery_id, @breweries, {}, { :class => "form-select" } %>
   </section>
 
-  <section>
-    <%= form.submit class: "btn-main" %>
+  <section class="mb-5 mt-3">
+    <%= form.submit class: "btn btn-primary" %>
   </section>
 <% end %>

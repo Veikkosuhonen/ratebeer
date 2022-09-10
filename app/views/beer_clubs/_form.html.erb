@@ -11,22 +11,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
-  </div>
+  <section class="my-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
+  </section>
 
-  <div>
-    <%= form.label :founded, style: "display: block" %>
-    <%= form.number_field :founded %>
-  </div>
+  <section class="mb-3">
+    <%= form.label :founded, class: "form-label" %>
+    <%= form.number_field :founded, class: "form-control" %>
+  </section>
 
-  <div>
-    <%= form.label :city, style: "display: block" %>
-    <%= form.text_field :city %>
-  </div>
+  <section class="mb-3">
+    <%= form.label :city, class: "form-label" %>
+    <%= form.text_field :city, class: "form-control" %>
+  </section>
 
-  <div>
-    <%= form.submit %>
-  </div>
+  <section class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
+  </section>
 <% end %>

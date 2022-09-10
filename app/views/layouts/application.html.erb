@@ -18,12 +18,13 @@
     <div>
       <div style="display: flex; flex-direction: column; align-items: center; width: 100%">
         <h1 class="display-1" style="color: #ffffff">Reitbiir</h1>
-        <h5 style="color: rgba(254,254,254,0.58)">Beer and Programmer satisfaction since 2022</h5>
+        <h4 style="color: rgba(254,254,254,0.58)">Beer and Programmer satisfaction since 2022</h4>
       </div>
     </div>
     <div style="display: flex; flex-direction: column; color: rgba(254,254,254,0.6)">
       <div><%= @photo.description %> <%= (@photo.location.name) %></div>
       <div>Photo by <%= @photo.user.name %>, <%= DateTime.parse(@photo.created_at).year %>, Unsplash</div>
+      <div>Random beer photo every minute</div>
     </div>
   </div>
 </div>
@@ -65,7 +66,7 @@
   </div>
 </nav>
 
-<div style="background: #ffffff">
+<div style="background: #ffffff; padding: 1rem">
   <% if notice %>
     <div class="alert alert-primary" role="alert">
       <%= notice %>

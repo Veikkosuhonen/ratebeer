@@ -11,17 +11,17 @@
     </section>
   <% end %>
 
-  <section>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <section class="my-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control" %>
   </section>
 
-  <section>
-    <%= form.label :year, style: "display: block" %>
-    <%= form.number_field :year %>
+  <section class="mb-3">
+    <%= form.label :year, class: "form-label" %>
+    <%= form.number_field :year, class: "form-control" %>
   </section>
 
-  <section>
-    <%= form.submit class: "btn-main" %>
+  <section class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
   </section>
 <% end %>
