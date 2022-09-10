@@ -2,12 +2,23 @@
 
 <p><%= @ratings.count %> ratings</p>
 
-<%= link_to "Create rating", new_rating_path if current_user %>
-
-<ul>
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th>Beer</th>
+    <th>Rating</th>
+    <th>User</th>
+    <th>Date</th>
+  </tr>
+  </thead>
+  <tbody>
   <% @ratings.each do |rating| %>
-    <li>
-      <%= render rating %>
-    </li>
+    <tr>
+      <td><%= link_to rating.beer %></td>
+      <td><%= rating.score %></td>
+      <td><%= link_to rating.user %></td>
+      <td><%= rating.created_at %></td>
+    </tr>
   <% end %>
-</ul>
+  </tbody>
+</table>

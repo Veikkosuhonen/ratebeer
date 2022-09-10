@@ -11,12 +11,12 @@
     </section>
   <% end %>
 
-  <section>
-    <%= form.label :beerclub_id %>
-    <%= form.collection_select :beerclub_id, @beer_clubs, :id, :to_s  %>
+  <section class="my-3">
+    <%= form.label :beerclub_id, class: "form-label" %>
+    <%= form.select :beerclub_id, @beer_clubs, {}, { :class => "form-select" }  %>
   </section>
 
-  <section>
-    <%= form.submit class: "btn-main" %>
+  <section class="mb-3">
+    <%= form.submit class: "btn btn-primary" %>
   </section>
 <% end %>
