@@ -37,4 +37,8 @@ class User < ApplicationRecord
       .average("ratings.score")
       .max_by(&:last)&.first
   end
+
+  def self.top(n)
+    User.all.includes(:ratings).sort_by { |u| -u.ratings.size }.take n
+  end
 end

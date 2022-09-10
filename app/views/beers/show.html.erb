@@ -9,8 +9,5 @@
     <%= form.submit "Create rating", { class: "btn btn-primary" } %>
   <% end %>
 
-  <div>
-    <%= link_to "Edit this beer", edit_beer_path(@beer) %>
-    <%= button_to "Destroy this beer", @beer, method: :delete, class: "btn btn-dangerous" %>
-  </div>
+  <%= edit_and_destroy_buttons @beer %>
 <% end %>

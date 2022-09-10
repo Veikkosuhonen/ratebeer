@@ -1,5 +1,5 @@
 <div>
-  <table class="table mb-5">
+  <table class="table mb-3">
     <thead>
     <tr>
       <th>Name</th>
@@ -14,7 +14,7 @@
         <td><%= link_to brewery.name, brewery %></td>
         <td><%= brewery.year %></td>
         <td><%= brewery.beers.size %></td>
-        <td><%= brewery.average_rating || '-' %></td>
+        <td><%= round(brewery.average_rating) || '-' %></td>
       </tr>
     <% end %>
     </tbody>

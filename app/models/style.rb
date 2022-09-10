@@ -1,9 +1,21 @@
 class Style < ApplicationRecord
+  include RatingAverage
   has_many :beers
+  has_many :ratings, through: :beers
 
   validates :name, presence: true, uniqueness: true
 
   def to_s
     name
+  end
+
+  def self.top(n)
+    top_ids = Style.joins(:ratings)
+                   .group(:id)
+                   .average("ratings.score")
+                   .sort_by { |s| -s.second }
+                   .take(n)
+                   .map { |s| s.first }
+    Style.where(id: top_ids).sort_by { |s| -s.average_rating }
   end
 end

@@ -1,0 +1,18 @@
+<div>
+  <table class="table mb-3">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Average rating</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% styles.each do |style| %>
+      <tr>
+        <td><%= link_to style.name, style %></td>
+        <td><%= round(style.average_rating) || '-' %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,18 @@
+<div>
+  <table class="table mb-3">
+    <thead>
+    <tr>
+      <th>Name</th>
+      <th>Ratings</th>
+    </tr>
+    </thead>
+    <tbody>
+    <% users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, user %></td>
+        <td><%= user.ratings.size %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
