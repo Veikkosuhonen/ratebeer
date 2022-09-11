@@ -1,6 +1,6 @@
 class UnsplashApi
   def self.random
-    Rails.cache.fetch("unsplash", expires_in: 1.minute) {
+    Rails.cache.fetch("unsplash", expires_in: 1.hour) {
       fetch_random_photo
     }
   end

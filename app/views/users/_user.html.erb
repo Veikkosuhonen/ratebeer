@@ -4,6 +4,12 @@
     <%= user.username %>
   </p>
 
+  <% if current_user&.is_admin && user.is_disabled %>
+  <span class="badge text-bg-danger">
+    Disabled
+  </span>
+  <% end %>
+
   <p>
     <%= user.ratings.count %> ratings
     average: <%= user.average_rating.to_f %>

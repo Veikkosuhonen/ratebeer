@@ -70,6 +70,15 @@ class UsersController < ApplicationController
     end
   end
 
+  def toggle_disabled
+    user = User.find(params[:id])
+    user.update_attribute :is_disabled, (not user.is_disabled)
+
+    new_status = user.is_disabled? ? "disabled" : "active"
+
+    redirect_to user, notice: "User status changed to #{new_status}"
+  end
+
   private
 
   # Use callbacks to share common setup or constraints between actions.

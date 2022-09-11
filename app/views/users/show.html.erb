@@ -2,6 +2,10 @@
 
 <%= render @user %>
 
+<% if current_user&.is_admin %>
+  <%= link_to "change activity", toggle_disabled_user_path(@user.id), data: {turbo_method: "post"}, class: "btn btn-danger" %>
+<% end %>
+
 <% if @user == current_user %>
   <%= edit_and_destroy_buttons @user %>
 <% end %>
