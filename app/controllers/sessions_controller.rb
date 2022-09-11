@@ -10,6 +10,7 @@ class SessionsController < ApplicationController
       if user.is_disabled
         return redirect_to signin_path, notice: "Your account is disabled. Please contact admin for support."
       end
+
       session[:user_id] = user.id
       redirect_to user, notice: "Welcome back!"
     else

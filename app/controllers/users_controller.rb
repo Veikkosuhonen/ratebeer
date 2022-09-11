@@ -72,7 +72,7 @@ class UsersController < ApplicationController
 
   def toggle_disabled
     user = User.find(params[:id])
-    user.update_attribute :is_disabled, (not user.is_disabled)
+    user.update_attribute :is_disabled, !user.is_disabled
 
     new_status = user.is_disabled? ? "disabled" : "active"
 

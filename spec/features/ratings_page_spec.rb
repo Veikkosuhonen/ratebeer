@@ -26,10 +26,9 @@ describe "Rating" do
     end
 
     it "on all ratings page" do
-      expect(page).to have_content "3 ratings"
-      expect(page).to have_content "anonymous 10 BeerDestroyer9000"
-      expect(page).to have_content "anonymous 30 BeerDestroyer9000"
-      expect(page).to have_content "anonymous 50 Pekka"
+      expect(page).to have_content "anonymous, anonymous 10 BeerDestroyer9000"
+      expect(page).to have_content "anonymous, anonymous 30 BeerDestroyer9000"
+      expect(page).to have_content "anonymous, anonymous 50 Pekka"
     end
 
     it "on user's page with only user's ratings" do

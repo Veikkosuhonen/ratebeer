@@ -6,7 +6,6 @@ class BeersController < ApplicationController
   # GET /beers or /beers.json
   def index
     @beers = Beer.all.includes(:brewery).includes(:style)
-    puts @beers.first.style
   end
 
   # GET /beers/1 or /beers/1.json
@@ -31,6 +30,7 @@ class BeersController < ApplicationController
   # POST /beers or /beers.json
   def create
     @beer = Beer.new(beer_params)
+    puts beer_params
 
     respond_to do |format|
       if @beer.save

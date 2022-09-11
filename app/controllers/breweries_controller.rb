@@ -61,11 +61,11 @@ class BreweriesController < ApplicationController
 
   def toggle_activity
     brewery = Brewery.find(params[:id])
-    brewery.update_attribute :is_active, (not brewery.is_active)
+    brewery.update_attribute :is_active, !brewery.is_active
 
     new_status = brewery.is_active? ? "active" : "retired"
 
-    redirect_to brewery, notice:"brewery activity status changed to #{new_status}"
+    redirect_to brewery, notice: "brewery activity status changed to #{new_status}"
   end
 
   private

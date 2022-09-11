@@ -17,12 +17,12 @@
 
   <section class="mb-4">
     <%= form.label :style_id, class: "form-label" %>
-    <%= form.select :style_id, @styles, {}, { :class => "form-select" }  %>
+    <%= form.collection_select :style_id, @styles, :id, :to_s, {}, { :class => "form-select" } %>
   </section>
 
   <section class="mb-4">
     <%= form.label :brewery_id, class: "form-label" %>
-    <%= form.select :brewery_id, @breweries, {}, { :class => "form-select" } %>
+    <%= form.collection_select :brewery_id, @breweries, :id, :name, {}, { :class => "form-select" } %>
   </section>
 
   <section class="mb-5 mt-3">
