@@ -2,6 +2,7 @@ class BeerClubsController < ApplicationController
   before_action :set_beer_club, only: %i[show edit update destroy]
   before_action :set_membership, only: %i[show edit update destroy]
   before_action :ensure_that_signed_in, except: [:index, :show]
+  before_action :authenticate_admin, only: [:destroy]
 
   # GET /beer_clubs or /beer_clubs.json
   def index

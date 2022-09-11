@@ -16,6 +16,10 @@ class ApplicationController < ActionController::Base
     redirect_to signin_path, notice: 'you should be signed in' if current_user.nil?
   end
 
+  def authenticate_admin
+    redirect_to signin_path, notice: 'Only admin can do that' unless current_user&.is_admin?
+  end
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
