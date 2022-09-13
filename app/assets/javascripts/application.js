@@ -18,6 +18,8 @@
 
 import "@hotwired/turbo-rails"
 
-import { beers } from "./custom/util";
+import { beers } from "./custom/beers";
+import { breweries } from "./custom/breweries";
 
 beers();
+breweries();

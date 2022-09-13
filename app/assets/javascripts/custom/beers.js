@@ -49,6 +49,8 @@ BEERS.sortByBrewery = () => {
 };
 
 const beers = () => {
+    if (document.querySelectorAll("#beer-table").length < 1) return;
+
     document.getElementById("name").addEventListener("click", (e) => {
         e.preventDefault;
         BEERS.sortByName();

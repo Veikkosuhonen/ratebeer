@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   resource :session, only: [:new, :create, :destroy]
 
   get 'beer-list', to: 'beers#list'
+  get 'brewery-list', to: 'breweries#list'
   get 'signup', to: 'users#new'
   get 'signin', to: 'sessions#new'
   delete 'signout', to: 'sessions#destroy'
