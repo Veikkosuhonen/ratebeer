@@ -25,6 +25,20 @@ BREWERIES.show = () => {
     });
 };
 
+BREWERIES.sortByName = () => {
+    BREWERIES.list.sort((a, b) => {
+        return a.name.toUpperCase().localeCompare(b.name.toUpperCase());
+    });
+};
+
+BREWERIES.sortByYear = () => {
+    BREWERIES.list.sort((a, b) => Number(b.year) - Number(a.year));
+};
+
+BREWERIES.sortByBeerCount = () => {
+    BREWERIES.list.sort((a, b) => Number(b.beer_count) - Number(a.beer_count));
+};
+
 const handleResponse = (beers) => {
     BREWERIES.list = beers;
     BREWERIES.show();
@@ -33,6 +47,24 @@ const handleResponse = (beers) => {
 
 const breweries = () => {
     if (document.querySelectorAll("#brewery-table").length < 1) return;
+
+    document.getElementById("name").addEventListener("click", (e) => {
+        e.preventDefault;
+        BREWERIES.sortByName();
+        BREWERIES.show();
+    });
+
+    document.getElementById("year").addEventListener("click", (e) => {
+        e.preventDefault;
+        BREWERIES.sortByYear();
+        BREWERIES.show();
+    });
+
+    document.getElementById("beer-count").addEventListener("click", (e) => {
+        e.preventDefault;
+        BREWERIES.sortByBeerCount();
+        BREWERIES.show();
+    });
 
     fetch("breweries.json")
         .then((response) => response.json())
