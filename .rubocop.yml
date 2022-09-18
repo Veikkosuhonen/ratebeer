@@ -72,3 +72,6 @@ Metrics/BlockLength:
 
 Metrics/MethodLength:
   Max: 15
+
+Lint/DuplicateBranch:
+  Enabled: false

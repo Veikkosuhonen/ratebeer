@@ -9,13 +9,13 @@ class BeerClubsController < ApplicationController
     @beer_clubs = BeerClub.all.includes(:memberships)
 
     @beer_clubs = case params[:order]
-             when "name" then @beer_clubs.sort_by(&:name)
-             when "founded" then @beer_clubs.sort_by(&:founded)
-             when "city" then @beer_clubs.sort_by(&:city)
-             when "members" then @beer_clubs.sort_by { |b| b.memberships.size }
-             else
-               @beer_clubs.sort_by(&:name)
-             end
+                  when "name" then @beer_clubs.sort_by(&:name)
+                  when "founded" then @beer_clubs.sort_by(&:founded)
+                  when "city" then @beer_clubs.sort_by(&:city)
+                  when "members" then @beer_clubs.sort_by { |b| b.memberships.size }
+                  else
+                    @beer_clubs.sort_by(&:name)
+                  end
   end
 
   # GET /beer_clubs/1 or /beer_clubs/1.json
