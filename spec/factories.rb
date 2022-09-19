@@ -35,4 +35,10 @@ FactoryBot.define do
     name { generate :style_name }
     description { "joo" }
   end
+
+  factory :beer_club do
+    name { "anon" }
+    founded { 1999 }
+    city { "nummela" }
+  end
 end

@@ -28,7 +28,7 @@ class MembershipsController < ApplicationController
     @membership.user = current_user
     respond_to do |format|
       if @membership.save
-        format.html { redirect_to beer_club_url(@membership.beer_club), notice: "#{current_user}, welcome to #{@membership.beer_club}" }
+        format.html { redirect_to beer_club_url(@membership.beer_club), notice: "You have applied to #{@membership.beer_club}. Please wait until a member accepts you in." }
         format.json { render :show, status: :created, location: @membership }
       else
         user = current_user
@@ -60,6 +60,14 @@ class MembershipsController < ApplicationController
       format.html { redirect_to @membership.beer_club, notice: "Membership ended" }
       format.json { head :no_content }
     end
+  end
+
+  def confirm
+    membership = Membership.find(params[:id])
+    membership.is_confirmed = true
+    membership.save
+
+    redirect_to membership.beer_club, notice: "#{membership.user} accepted to #{membership.beer_club}"
   end
 
   private

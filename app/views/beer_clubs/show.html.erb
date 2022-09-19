@@ -10,7 +10,7 @@
 </section>
 <% end %>
 
-<% if @membership %>
+<% if @membership&.is_confirmed %>
   <section>
     <%= form_with(model: @membership, method: :delete) do |form| %>
       <%= form.hidden_field :beer_club_id, value: @beer_club.id %>
@@ -18,15 +18,28 @@
       <%= form.submit "End the membership", class: 'btn btn-dangerous' %>
     <% end %>
   </section>
+
+  <section>
+    <h6>Membership applications</h6>
+    <ul>
+    <% @beer_club.membership_applications.each do |new_member| %>
+    <li>
+      <%= link_to new_member.user %>
+      <%= "applied on #{new_member.created_at}" %>
+      <%= link_to "Accept", confirm_membership_path(new_member.id), data: {turbo_method: "post"}, class: "btn" %>
+    </li>
+    <% end %>
+    </ul>
+  </section>
 <% end %>
 
 <section>
   <strong>Members</strong>
   <ul>
-    <% @beer_club.memberships.each do |membership| %>
+    <% @beer_club.confirmed_memberships.each do |membership| %>
       <li>
         <%= link_to membership.user %>
-        <%= "since #{membership.created_at}" %>
+        <%= "since #{membership.updated_at}" %>
       </li>
     <% end %>
   </ul>
