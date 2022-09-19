@@ -40,6 +40,7 @@ group :development, :test do
   gem 'debug'
   gem 'sqlite3'
   gem 'rspec-rails', '~>6.0.0.rc1'
+  gem 'rack-mini-profiler'
 end
 
 group :test do

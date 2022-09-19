@@ -1,14 +1,13 @@
-
-
 <h1>Users</h1>
 
 <div id="users">
   <% @users.each do |user| %>
-    <%= render user %>
     <p>
-      <%= link_to "Show this user", user %>
+        <%= link_to(user.username, user) %>
+        <p>Has made <%= "#{user.ratings.size}"%> ratings, average rating <%= "#{user.average_rating}" %></p>
+        <% if user.is_disabled? %>
+          <span class="badge text-bg-danger">disabled</span>
+        <% end %>
     </p>
   <% end %>
 </div>
-
-<%= link_to "New user", new_user_path %>
