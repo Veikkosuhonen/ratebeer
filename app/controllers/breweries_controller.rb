@@ -4,8 +4,8 @@ class BreweriesController < ApplicationController
   before_action :authenticate_admin, only: [:destroy]
 
   before_action invalidate_cache(
-                  "active_breweries_table"
-                ), only: [:create, :update, :destroy]
+    "active_breweries_table"
+  ), only: [:create, :update, :destroy]
 
   # GET /breweries or /breweries.json
   def index

@@ -2,11 +2,11 @@ class RatingsController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index]
 
   before_action invalidate_cache(
-                  "all_beers_table-name",
-                  "all_beers_table-brewery",
-                  "all_beers_table-style",
-                  "active_breweries_table"
-                ), only: [:create, :destroy]
+    "all_beers_table-name",
+    "all_beers_table-brewery",
+    "all_beers_table-style",
+    "active_breweries_table"
+  ), only: [:create, :destroy]
 
   def index
     @top_beers = Beer.top 3

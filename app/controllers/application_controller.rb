@@ -26,6 +26,6 @@ class ApplicationController < ActionController::Base
 
   # returns an invalidation function
   def self.invalidate_cache(*keys)
-    ->() { keys.each { |key| expire_fragment(key); puts "expiring #{key}" } }
+    -> { keys.each { |key| expire_fragment(key); puts "expiring #{key}" } }
   end
 end
