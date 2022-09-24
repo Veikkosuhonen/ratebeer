@@ -279,6 +279,8 @@ GEM
     sqlite3 (1.4.4)
     stringio (3.0.2)
     strscan (3.0.4)
+    sucker_punch (3.1.0)
+      concurrent-ruby (~> 1.0)
     thor (1.2.1)
     tilt (2.0.11)
     timeout (0.3.0)
@@ -344,6 +346,7 @@ DEPENDENCIES
   simplecov
   spring
   sqlite3
+  sucker_punch (~> 3.0)
   turbo-rails
   turbolinks
   uglifier

@@ -32,6 +32,8 @@ gem 'httparty'
 
 gem 'unsplash'
 
+gem 'sucker_punch', '~> 3.0'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -9,5 +9,5 @@ class Rating < ApplicationRecord
     only_integer: true
   }
 
-  scope :recent, -> { order(created_at: :desc).limit(5) }
+  scope :recent, -> { includes(:beer, :user, :brewery).order(created_at: :desc).limit(5) }
 end
