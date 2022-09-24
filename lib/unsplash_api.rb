@@ -8,14 +8,18 @@ class UnsplashApi
   def self.fetch_random_photo
     return nil if Rails.env == "test"
 
-    Unsplash.configure do |config|
-      config.application_access_key = key
-      config.application_secret = "?"
-      config.application_redirect_uri = "https://reitbiir.fly.dev"
-      config.utm_source = "reitbiir"
-    end
+    begin
+      Unsplash.configure do |config|
+        config.application_access_key = key
+        config.application_secret = "?"
+        config.application_redirect_uri = "https://reitbiir.fly.dev"
+        config.utm_source = "reitbiir"
+      end
 
-    Unsplash::Photo.random(query: "beer", orientation: "landscape")
+      Unsplash::Photo.random(query: "beer", orientation: "landscape")
+    rescue error
+      nil
+    end
   end
 
   def self.key
