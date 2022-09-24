@@ -1,3 +1,5 @@
+<% cache brewery do %>
+
 <div id="<%= dom_id brewery %>">
   <h2>
     <%= brewery.name %>
@@ -16,11 +18,9 @@
     <%= brewery.beers.count %>
   </p>
 
-  <p>
-    <% brewery.beers.each do |beer| %>
-      <%= link_to beer.name, beer %>
-    <% end %>
-  </p>
+  <section>
+    <%= render "beers/beers_table", beers: brewery.beers %>
+  </section>
 
   <% unless brewery.ratings.empty? %>
   <p>
@@ -30,3 +30,5 @@
   <% end %>
 
 </div>
+
+<% end %>
