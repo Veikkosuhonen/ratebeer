@@ -1,5 +1,7 @@
 class Brewery < ApplicationRecord
   include RatingAverage
+  extend TopRated
+
   has_many :beers, dependent: :destroy
   has_many :ratings, through: :beers
 
@@ -19,9 +21,5 @@ class Brewery < ApplicationRecord
 
   def beer_count
     beers.size
-  end
-
-  def self.top(count)
-    all.sort_by { |b| -(b.average_rating || 0) }.take count
   end
 end
