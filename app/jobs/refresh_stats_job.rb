@@ -2,7 +2,6 @@ class RefreshStatsJob
   include SuckerPunch::Job
 
   def perform
-
     puts "Refreshing stats..."
     TopStatsHelper.cache_top_stats
 
