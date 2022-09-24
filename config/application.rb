@@ -25,9 +25,13 @@ module Ratebeer
     config.autoload_paths << Rails.root.join("lib")
     config.eager_load_paths << Rails.root.join("lib")
 
+    # Only do this if this is the server, not console for example
     if defined?(Rails::Server)
       config.after_initialize do
-        RefreshStatsJob.perform_async
+        # We dont want the job in CI
+        unless Rails.env.test?
+          RefreshStatsJob.perform_async
+        end
       end
     end
 

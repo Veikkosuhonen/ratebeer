@@ -9,7 +9,7 @@ module Helpers
   end
 
   def view_page_on_exception(example)
-    if example.exception
+    if example.exception && !ENV["CI"] == "true"
       save_and_open_page
     end
   end
