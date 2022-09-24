@@ -3,8 +3,18 @@ class BeersController < ApplicationController
   before_action :ensure_that_signed_in, except: [:index, :show, :list]
   before_action :authenticate_admin, only: [:destroy]
 
+  before_action invalidate_cache(
+                  "all_beers_table-name",
+                  "all_beers_table-brewery",
+                  "all_beers_table-style",
+                  "active_breweries_table"
+                ), only: [:create, :update, :destroy]
+
   # GET /beers or /beers.json
   def index
+    @order = params[:order] || 'name'
+    return if request.format.html? && fragment_exist?("all_beers_table-#{@order}")
+
     @beers = Beer.includes(:brewery, :style, :ratings).all
 
     @beers = case params[:order]

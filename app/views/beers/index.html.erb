@@ -1,6 +1,7 @@
 <h1>Beers</h1>
 
-<%= render "beers_table", beers: @beers %>
-
+<% cache "all_beers_table-#{@order}", skip_digest: true do %>
+  <%= render "beers_table", beers: @beers %>
+<% end %>
 <%= link_to "New beer", new_beer_path, { class: "btn btn-primary" } if current_user %>
 <%= link_to "Breweries", breweries_path, { class: "link" } %>
